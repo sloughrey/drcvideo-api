@@ -12,5 +12,12 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return "Welcome to Sean Loughrey's DRC API test!";
+});
+
+// Versioned API routes
+$router->group(['prefix' => 'v1'], function () use ($router) {
+    $router->get('/users', 'UserController@all');  // list all users
+    $router->get('/users/{id}', 'UserController@show'); // show the requested user
+    $router->post('/users', 'UserController@create'); // create the user with posted data
 });
