@@ -200,11 +200,21 @@ class User
         return false;
     }
 
+    /**
+     * Returns the array of errors
+     *
+     * @return array
+     */
     public function getErrors()
     {
         return $this->errors;
     }
 
+    /**
+     * Returns a list of properties required for the creation of the User
+     *
+     * @return array
+     */
     protected function requiredProps()
     {
         return [
@@ -212,6 +222,11 @@ class User
         ];
     }
 
+    /**
+     * Checks to see if this user has all of the required properties for saving
+     *
+     * @return boolean
+     */
     protected function hasRequiredProps()
     {
         foreach ($this->requiredProps() as $prop) {
@@ -223,6 +238,11 @@ class User
         return true;
     }
 
+    /**
+     * Returns an array representation of the user object
+     *
+     * @return array
+     */
     public function toArray()
     {
         return [
@@ -235,6 +255,11 @@ class User
         ];
     }
 
+    /**
+     * Loads the user from the database
+     *
+     * @return boolean
+     */
     public function load()
     {
         if (!$this->dancerID) {

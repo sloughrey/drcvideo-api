@@ -23,6 +23,11 @@ class UserController extends Controller
         $this->repository = new UserRepository();
     }
 
+    /**
+     * Returns a listing of all the users
+     *
+     * @return Response
+     */
     public function all()
     {
         $users = $this->repository->all();
@@ -31,6 +36,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Displays a user with a given id
+     *
+     * @param integer $id
+     * @return Response
+     */
     public function show($id)
     {
         $userData = $this->repository->show($id);
@@ -48,6 +59,12 @@ class UserController extends Controller
         );
     }
 
+    /**
+     * Creates a new user
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function create(Request $request)
     {
         // validate our user data
@@ -78,7 +95,7 @@ class UserController extends Controller
     }
 
     /**
-     * Undocumented function
+     * Sends a successful response to the user
      *
      * @param array $data
      * @param integer $statusCode

@@ -9,7 +9,7 @@ class Database
     /**
      * Returns our mysqli object, creates one if it hasn't been initialized yet
      *
-     * @return void
+     * @return object
      */
     public static function getDBObj()
     {
