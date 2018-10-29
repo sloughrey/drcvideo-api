@@ -49,14 +49,7 @@ class UserController extends Controller
             return $this->sendSuccess($userData);
         }
 
-        return response()->json(
-            [
-            'status' => 'error',
-            'errors' => ['Resource does not exist'],
-            'data' => []
-            ],
-            422
-        );
+        return $this->redirectError(422, [], 'Resource does not exist');
     }
 
     /**
@@ -86,12 +79,7 @@ class UserController extends Controller
             }
         }
 
-        return response()->json(
-            [
-                'status' => 'success',
-                'statusMsg' => 'User successfully created'
-            ]
-        );
+        return $this->sendSuccess([], 200, 'User successfully created');
     }
 
     /**
@@ -128,7 +116,7 @@ class UserController extends Controller
         // return 422 status code for bad data
         return response()->json([
             'status' => 'error',
-            'statusMsg' => '',
+            'statusMsg' => $statusMsg,
             'errors' => $errors,
             'data' => []
         ], 422);
