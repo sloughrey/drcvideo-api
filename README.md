@@ -1,6 +1,8 @@
 # DRC Video / Dancebug API
 
 ### Stack:
+  - PHP 7.2.2
+  - MySQL 5.7.14
   - Laravel Lumen 5.6
   - Bootstrap 4 (includes jQuery as a dependency)
   - HTML
