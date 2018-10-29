@@ -11,9 +11,9 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return "Welcome to Sean Loughrey's DRC API test!";
-});
+// Web routes for frontend
+$router->get('/', 'HomeController@index');
+
 
 // Versioned API routes
 $router->group(['prefix' => 'v1'], function () use ($router) {

@@ -52,12 +52,12 @@ class UserController extends Controller
     {
         // validate our user data
         $user = new User();
-        $user->set('studioName', $request['studioName']);
-        $user->set('studioID', (int) $request['studioID']);
-        $user->set('firstName', $request['firstName']);
-        $user->set('lastName', $request['lastName']);
-        $user->set('gender', $request['gender']);
-        $user->set('dob', $request['dob']);
+        $user->set('studioName', $request->input('studioName'));
+        $user->set('studioID', (int) $request->input('studioID'));
+        $user->set('firstName', $request->input('firstName'));
+        $user->set('lastName', $request->input('lastName'));
+        $user->set('gender', $request->input('gender'));
+        $user->set('dob', $request->input('dob'));
 
         if ($user->hasErrors()) {
             return $this->redirectError(422, $user->getErrors());
