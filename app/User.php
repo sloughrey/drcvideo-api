@@ -167,7 +167,7 @@ class User
                         switch ($v) {
                             case 'date':
                                 // date validation for yyyy/mm/dd
-                                if (preg_match("^\\d{4}/\\d{2}/\\d{2}^", $val) !== 1) {
+                                if (preg_match("^\\d{4}-\\d{2}-\\d{2}^", $val) !== 1) {
                                     $this->errors[] = "Property '$prop' has an invalid date format.  Please use yyyy/mm/dd.";
                                 };
                                 break;
