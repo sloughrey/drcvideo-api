@@ -2,20 +2,29 @@
 
 namespace App\Repositories;
 
+use App\User;
+use App\Database;
+
 class UserRepository
 {
-    public function __construct()
-    {
+    /**
+     * The table to grab our users from
+     *
+     * @var string
+     */
+    protected $userTable = 'tblstudios';
 
-    }
-
+    /**
+     * Returns a collection of all users
+     *
+     * @return array
+     */
     public function all()
     {
-        $mysqli = $this->getDBConnectionObj();
-
+        $mysqli = Database::getDBObj();
         $sql = 'SELECT t.DancerID, t.StudioName, t.StudioID, t.FirstName, t.LastName, t.Gender, t.DOB, t.DateCreated
         
-                FROM tblstudios AS t';
+                FROM ' . $this->userTable . ' AS t';
         $result = $mysqli->query($sql);
 
         $users = [];
@@ -26,56 +35,23 @@ class UserRepository
         return $users;
     }
 
+    /**
+     * Returns a single user by id
+     *
+     * @param integer $id
+     * @return array
+     */
     public function show($id)
     {
         if (!is_numeric($id)) {
             throw new Exception('Please provide a valid numeric user id');
         }
 
-        $mysqli = $this->getDBConnectionObj();
-
-        $sql = 'SELECT t.DancerID, t.StudioName, t.StudioID, t.FirstName, t.LastName, t.Gender, t.DOB, t.DateCreated
-        
-                FROM tblstudios AS t
-                
-                WHERE DancerID = ?';
-
-        if (!($stmt = $mysqli->prepare($sql))) {
-            return "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+        $user = new User($id);
+        if (!$user->load()) {
+            return [];
         }
 
-        if (!$stmt->bind_param("i", $id)) {
-            return "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-        }
-
-        if (!$stmt->execute()) {
-            return "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-        }
-
-        if (!($res = $stmt->get_result())) {
-            return "Getting result set failed: (" . $stmt->errno . ") " . $stmt->error;
-        }
-
-        if ($res->num_rows === 1) {
-            return $res->fetch_assoc();
-        } else {
-            // redirect user not found
-        }
-    }
-
-    public function create()
-    {
-        // create the user
-    }
-
-    private function getDBConnectionObj()
-    {
-        $mysqli = new \mysqli("localhost", "dancebug", "dancebug", "dancebug");
-        if ($mysqli->connect_errno) {
-            echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-            exit;
-        }
-
-        return $mysqli;
+        return $user->toArray();
     }
 }
