@@ -85,6 +85,8 @@ VALUES
 ('Edge Dance', 3215, 'Riley', 'O\'Shaughnes', 'Female', '2007/12/10');`
 
 
-6) Enjoy!		
+6) Enjoy!
+
+#### If you have any questions or issues that arise during the installation don't hesitate to contacat me!
 
 
