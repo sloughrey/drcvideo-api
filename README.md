@@ -87,6 +87,10 @@ VALUES
 
 6) Enjoy!
 
+### How to Use:
+- Visit the index.php page for a web version that consumes the API
+- Simulate requests using Postman or preferred tools
+
 #### If you have any questions or issues that arise during the installation don't hesitate to contacat me!
 
 
