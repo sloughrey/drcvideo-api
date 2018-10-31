@@ -8,6 +8,7 @@
   - HTML
   - CSS
   - Javascript
+  - Composer
   
 ### Laravel Lumen Requirements:
 - PHP >= 7.1.3
